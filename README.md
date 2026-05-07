@@ -41,7 +41,9 @@ projects/encryption-system/
 
 ## 快速开始
 
-### 1. 安装依赖
+### Linux/macOS
+
+#### 1. 安装依赖
 
 ```bash
 # 后端依赖
@@ -53,8 +55,14 @@ cd ../frontend
 npm install
 ```
 
-### 2. 启动加密平台
+#### 2. 启动加密平台
 
+**方式一：使用启动脚本（推荐）**
+```bash
+./start.sh
+```
+
+**方式二：手动启动**
 ```bash
 # 启动后端（终端1）
 cd src/platform/backend
@@ -62,6 +70,38 @@ python main.py
 
 # 启动前端（终端2）
 cd src/platform/frontend
+npm run dev
+```
+
+### Windows
+
+#### 1. 安装依赖
+
+```cmd
+:: 后端依赖
+cd src\platform\backend
+pip install -r requirements.txt
+
+:: 前端依赖
+cd ..\frontend
+npm install
+```
+
+#### 2. 启动加密平台
+
+**方式一：使用启动脚本（推荐）**
+```cmd
+start.bat
+```
+
+**方式二：手动启动**
+```cmd
+:: 启动后端（命令行窗口1）
+cd src\platform\backend
+python main.py
+
+:: 启动前端（命令行窗口2）
+cd src\platform\frontend
 npm run dev
 ```
 
@@ -117,7 +157,18 @@ python test_encryption.py
 - **后端**：Python 3.10+, FastAPI
 - **前端**：Vue 3, Element Plus
 - **加密**：AST解析, 代码混淆
-- **指纹采集**：系统指令 (lspci, wmic等)
+- **指纹采集**：系统指令 (Linux: lspci, Windows: wmic)
+
+## 跨平台支持
+
+| 功能 | Linux | Windows |
+|------|-------|---------|
+| CPU指纹采集 | ✅ `/proc/cpuinfo` | ✅ `wmic cpu` |
+| GPU指纹采集 | ✅ `lspci` | ✅ `wmic path win32_VideoController` |
+| Python加密 | ✅ | ✅ |
+| Vue加密 | ✅ | ✅ |
+| Web平台 | ✅ | ✅ |
+| 启动脚本 | `start.sh` | `start.bat` |
 
 ## 注意事项
 
